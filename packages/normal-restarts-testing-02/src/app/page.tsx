@@ -1,12 +1,71 @@
 'use client';
 
 import { Container, Typography, Box, Button, Stack } from '@mui/material';
-import { Rocket, Star, Favorite } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import Lottie from 'lottie-react';
 
 const MotionBox = motion.create(Box);
 const MotionStack = motion.create(Stack);
 const MotionTypography = motion.create(Typography);
+
+// Lottie animation data - using a simple rocket animation
+const rocketAnimation = {
+  "v": "5.7.4",
+  "fr": 30,
+  "ip": 0,
+  "op": 60,
+  "w": 200,
+  "h": 200,
+  "nm": "Rocket",
+  "ddd": 0,
+  "assets": [],
+  "layers": [
+    {
+      "ddd": 0,
+      "ind": 1,
+      "ty": 4,
+      "nm": "Rocket",
+      "sr": 1,
+      "ks": {
+        "o": { "a": 0, "k": 100 },
+        "r": { "a": 1, "k": [
+          { "t": 0, "s": [0], "e": [360] },
+          { "t": 60 }
+        ]},
+        "p": { "a": 1, "k": [
+          { "t": 0, "s": [100, 120], "e": [100, 80] },
+          { "t": 30, "s": [100, 80], "e": [100, 120] },
+          { "t": 60 }
+        ]},
+        "a": { "a": 0, "k": [0, 0] },
+        "s": { "a": 1, "k": [
+          { "t": 0, "s": [100, 100], "e": [120, 120] },
+          { "t": 30, "s": [120, 120], "e": [100, 100] },
+          { "t": 60 }
+        ]}
+      },
+      "shapes": [
+        {
+          "ty": "gr",
+          "it": [
+            {
+              "ty": "rc",
+              "d": 1,
+              "s": { "a": 0, "k": [40, 60] },
+              "p": { "a": 0, "k": [0, 0] },
+              "r": { "a": 0, "k": 10 }
+            },
+            {
+              "ty": "fl",
+              "c": { "a": 0, "k": [1, 1, 1, 1] },
+              "o": { "a": 0, "k": 100 }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
 
 export default function Landing() {
   return (
@@ -26,54 +85,23 @@ export default function Landing() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <MotionStack 
-            direction="row" 
-            spacing={2} 
-            justifyContent="center" 
-            sx={{ mb: 3 }}
+          <MotionBox
+            sx={{ 
+              display: 'flex', 
+              justifyContent: 'center', 
+              mb: 4,
+              '& > div': { width: 200, height: 200 }
+            }}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
           >
-            <motion.div
-              animate={{ 
-                rotate: [0, 10, -10, 0],
-                y: [0, -10, 0]
-              }}
-              transition={{ 
-                duration: 2,
-                repeat: Infinity,
-                repeatDelay: 1
-              }}
-            >
-              <Rocket sx={{ fontSize: 60 }} />
-            </motion.div>
-            <motion.div
-              animate={{ 
-                scale: [1, 1.2, 1],
-                rotate: [0, 180, 360]
-              }}
-              transition={{ 
-                duration: 3,
-                repeat: Infinity,
-                repeatDelay: 0.5
-              }}
-            >
-              <Star sx={{ fontSize: 60 }} />
-            </motion.div>
-            <motion.div
-              animate={{ 
-                scale: [1, 1.3, 1]
-              }}
-              transition={{ 
-                duration: 1.5,
-                repeat: Infinity,
-                repeatDelay: 0
-              }}
-            >
-              <Favorite sx={{ fontSize: 60 }} />
-            </motion.div>
-          </MotionStack>
+            <Lottie 
+              animationData={rocketAnimation} 
+              loop={true}
+              style={{ width: 200, height: 200 }}
+            />
+          </MotionBox>
           
           <MotionTypography 
             variant="h1" 
@@ -120,6 +148,7 @@ export default function Landing() {
     </Box>
   );
 }
+
 
 
 
