@@ -13,8 +13,8 @@ export default function Landing() {
   const [animationData, setAnimationData] = useState(null);
 
   useEffect(() => {
-    // Fetch a cool Lottie animation from LottieFiles
-    fetch('https://lottie.host/4db68bbd-31f6-4cd8-84eb-189de081159a/IGmMCqhzpt.json')
+    // Fetch the Lottie animation
+    fetch('https://lottie.host/647661c5-4514-4025-9098-09eb719177e4/L2MpcJvAdy.lottie')
       .then(response => response.json())
       .then(data => setAnimationData(data))
       .catch(err => console.error('Failed to load animation:', err));
@@ -101,6 +101,7 @@ export default function Landing() {
     </Box>
   );
 }
+
 
 
 
