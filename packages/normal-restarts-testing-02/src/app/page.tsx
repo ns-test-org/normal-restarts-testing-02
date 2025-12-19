@@ -10,7 +10,7 @@ const MotionStack = motion.create(Stack);
 const MotionTypography = motion.create(Typography);
 
 export default function Landing() {
-  const [animationData, setAnimationData] = useState(null);
+  const [animationData, setAnimationData] = useState<any>(null);
 
   useEffect(() => {
     // Fetch the Lottie animation
@@ -101,6 +101,7 @@ export default function Landing() {
     </Box>
   );
 }
+
 
 
 
