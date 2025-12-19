@@ -1,84 +1,131 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
-const slogans = [
-  "Turn chats into apps",
-  "Prompt. Ship. Repeat.",
-  "Build anything from a chat",
-  "Ideas → Apps, instantly",
-  "From zero to MVP in minutes",
-  "Your cofounder in the command line",
-  "Draft, iterate, deploy",
-  "Ship faster than you can type",
-  "Design in text, deliver in code",
-  "Dream it. Prompt it. Run it.",
-  "Chat-native app building",
-  "From prompt to product",
-  "One prompt, infinite apps",
-  "Stop scaffolding. Start shipping.",
-  "Prototype at the speed of thought",
-  "Make conversations executable"
-];
+import { motion } from 'framer-motion';
+import { Box, Container, Typography, Button } from '@mui/material';
 
 export default function Landing() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsVisible(false);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % slogans.length);
-        setIsVisible(true);
-      }, 400);
-    }, 2800);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="relative h-[100dvh] w-full overflow-hidden bg-black text-white">
-      {/* Enhanced animated aurora background layers */}
-      <div className="absolute inset-0 bg-aurora-layer-1" />
-      <div className="absolute inset-0 bg-aurora-layer-2" />
-      <div className="absolute inset-0 bg-aurora-layer-3" />
-      
-      {/* Floating particles overlay */}
-      <div className="absolute inset-0 bg-particles" />
-      
-      {/* Main content - centered */}
-      <main className="relative z-10 h-full flex flex-col items-center justify-center px-6">
-        <h1 className="text-center text-[clamp(28px,6vw,64px)] font-medium tracking-tight mb-4">
-          Turn Chats into Apps
-        </h1>
-        
-        {/* Rotating slogans */}
-        <div className="mt-4 h-8 md:h-10 overflow-hidden flex items-center justify-center">
-          <span
-            className={`inline-block text-center text-[clamp(18px,3vw,32px)] font-light transition-all duration-[400ms] ease-in-out ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'
-            }`}
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        overflow: 'hidden',
+      }}
+    >
+      <Container maxWidth="md">
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          <Typography
+            variant="h1"
+            component="h1"
+            sx={{
+              color: 'white',
+              textAlign: 'center',
+              fontWeight: 700,
+              fontSize: { xs: '3rem', md: '5rem' },
+              mb: 3,
+            }}
           >
-            {slogans[currentIndex]}
-          </span>
-        </div>
-      </main>
-      
-      {/* Start Prompting arrow pointing left - bottom left */}
-      <div className="absolute left-6 md:left-8 bottom-[5%] z-20 flex items-center gap-3 arrow-point-left">
-        <div className="flex items-center gap-2 text-white/80 font-medium text-sm md:text-base">
-          <svg 
-            className="w-5 h-5 md:w-6 md:h-6 animate-bounce-horizontal" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
+            Hello World
+          </Typography>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+        >
+          <Typography
+            variant="h5"
+            component="p"
+            sx={{
+              color: 'rgba(255, 255, 255, 0.9)',
+              textAlign: 'center',
+              mb: 4,
+              fontWeight: 300,
+            }}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-          <span>Start prompting</span>
-        </div>
-      </div>
-    </div>
+            Welcome to your beautiful landing page
+          </Typography>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
+          style={{ display: 'flex', justifyContent: 'center' }}
+        >
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: 'white',
+              color: '#667eea',
+              px: 4,
+              py: 1.5,
+              fontSize: '1.1rem',
+              fontWeight: 600,
+              '&:hover': {
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                transform: 'scale(1.05)',
+              },
+              transition: 'all 0.3s ease',
+            }}
+          >
+            Get Started
+          </Button>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+          style={{ marginTop: '4rem' }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: 4,
+              flexWrap: 'wrap',
+            }}
+          >
+            {['Feature 1', 'Feature 2', 'Feature 3'].map((feature, index) => (
+              <motion.div
+                key={feature}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.2 + index * 0.2 }}
+              >
+                <Box
+                  sx={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(10px)',
+                    borderRadius: 2,
+                    p: 3,
+                    minWidth: '150px',
+                    textAlign: 'center',
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{ color: 'white', fontWeight: 500 }}
+                  >
+                    {feature}
+                  </Typography>
+                </Box>
+              </motion.div>
+            ))}
+          </Box>
+        </motion.div>
+      </Container>
+    </Box>
   );
 }
+
